@@ -45,7 +45,7 @@
         </table>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:StoreConnection %>"
             SelectCommand="SELECT * FROM VendorDetails"
-            InsertCommand="INSERT INTO VendorDetails VALUES ((Select max(Vendorid) from VendorDetails)+1,@Vfirm, @Vaddress,@Vname,@Vcontactno,@Vemail)"
+            InsertCommand="INSERT INTO VendorDetails VALUES ((Select isnull(max(Vendorid),0) from VendorDetails)+1,@Vfirm, @Vaddress,@Vname,@Vcontactno,@Vemail)"
             UpdateCommand="UPDATE VendorDetails SET Vfirm = @Vfirm, Vaddress = @Vaddress,Vname=@Vname,Vcontactno=@Vcontactno,Vemail=@Vemail WHERE Vendorid = @Vendorid"
             DeleteCommand="DELETE FROM VendorDetails WHERE Vendorid = @Vendorid">
             <InsertParameters>
@@ -70,3 +70,5 @@
         <asp:Label ID="Label3" runat="server" ForeColor="Red" Text="*Mandatory Fields"></asp:Label>
     </div>
 </asp:Content>
+
+

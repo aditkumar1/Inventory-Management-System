@@ -70,27 +70,27 @@ public partial class Login : System.Web.UI.Page
         {
             if(role.Equals("Admin"))
             {
-                Response.Redirect("~/store/admin/UserMain.aspx");
+                Response.Redirect("~/panels/admin/UserMain.aspx");
             }
             else if(role.Equals("Finance Office"))
             {
-                Response.Redirect("~/store/finance/UserMain.aspx");
+                Response.Redirect("~/panels/finance/UserMain.aspx");
             }
             else if(role.Equals("Store User"))
             {
-                Response.Redirect("~/store/user/UserMain.aspx");
+                Response.Redirect("~/panels/user/UserMain.aspx");
             }
             else if (role.Equals("HoD"))
             {
-                Response.Redirect("~/store/Hod/UserMain.aspx");
+                Response.Redirect("~/panels/Hod/UserMain.aspx");
             }
             else if (role.Equals("Director"))
             {
-                Response.Redirect("~/store/director/UserMain.aspx");
+                Response.Redirect("~/panels/director/UserMain.aspx");
             }
             else if (role.Equals("Purchase Office"))
             {
-                Response.Redirect("~/store/purchase/UserMain.aspx");
+                Response.Redirect("~/panels/purchase/UserMain.aspx");
             }
             else
             {

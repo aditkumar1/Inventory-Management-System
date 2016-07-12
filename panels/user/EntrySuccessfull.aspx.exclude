@@ -1,16 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/store/MasterPage.master" AutoEventWireup="true" CodeFile="EntrySuccessfull.aspx.cs" Inherits="EntrySuccessfull" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/store/admin/MasterPage.master" AutoEventWireup="true" CodeFile="EntrySuccessfull.aspx.cs" Inherits="EntrySuccessfull" %>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder1">
     <div id="content" class="box">
         <h1>Entry Successfull</h1>
       <!-- Headings -->
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/store/ProductEntry.aspx">Add Another Entry Into Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="ProductEntry.aspx">Add Another Entry Into Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/store/ProductEntryModify.aspx">Modify An Entry Of The Register</asp:HyperLink>
-        </p>
-        <p class="msg info">
-            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/store/ProductEntrySearch.aspx">Search An Entry In The Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="ProductEntrySearch.aspx">Search An Entry In The Register</asp:HyperLink>
         </p>
       <!-- Tabs -->
       </div>

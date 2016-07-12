@@ -12,11 +12,12 @@ public partial class ItemAdd : System.Web.UI.Page
     {
         GetSelectedRecord();
         BindGrid();
+        RadioCheck();
     }
     private void BindGrid()
     {
         if (Session["ChoosedProductCategory"]!=null)
-        {   string strQuery = "select Itemid,Iname from ItemDetails where Pcid=" + Session["ChoosedProductCategory"]+" and Iname Like '%"+TextBox2.Text+"%'";
+        {   string strQuery = "select Itemid,Iname from ItemTable where Pcid=" + Session["ChoosedProductCategory"];
             DataTable dt = new DataTable();
             String strConnString ="Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
             SqlConnection con = new SqlConnection(strConnString);
@@ -41,6 +42,12 @@ public partial class ItemAdd : System.Web.UI.Page
                 con.Close();
                 sda.Dispose();
                 con.Dispose();
+            }
+            if (GridView1.Rows.Count <= 0)
+            {
+                ItemAddChoice2.Checked = true;
+                ItemAddChoice1.Enabled = false;
+                RadioCheck();
             }
     }
     }
@@ -92,6 +99,23 @@ public partial class ItemAdd : System.Web.UI.Page
         GridView1.DataBind();
         SetSelectedRecord();
     }
+    private void RadioCheck()
+    {
+        if(ItemAddChoice1.Checked)
+        {
+            Button1.Enabled = true;
+            GridView1.Enabled = true;
+            TextBox1.Enabled = false;
+            Button2.Enabled = false;
+        }
+        if(ItemAddChoice2.Checked)
+        {
+            TextBox1.Enabled = true;
+            Button2.Enabled = true;
+            Button1.Enabled = false;
+            GridView1.Enabled = false;
+        }
+    }
     protected void Button1_Click1(object sender, EventArgs e)
     {
         if (ViewState["SelectedID"] != null)
@@ -103,15 +127,71 @@ public partial class ItemAdd : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Store/ProductCategorySearch.aspx");
+        Response.Redirect("ProductCategoryAdd.aspx");
     }
-   protected void closePopup(String id)
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        if (!TextBox1.Text.Equals("") && Session["ChoosedProductCategory"]!=null)
+        {
+            String strQuery1 = "select max(Itemid) from ItemTable ";
+            String strConnString = "Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd1 = new SqlCommand(strQuery1,con);
+            con.Open();
+            SqlDataReader dr = cmd1.ExecuteReader();
+            int maxid=0;
+            try
+            {
+                if (dr!=null)
+                {
+                    if (dr.Read()&&!dr.IsDBNull(0))
+                    {
+                        maxid = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        maxid = 1000;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+               ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+            }
+            finally
+            {
+                dr.Close();  
+            }
+            SqlCommand cmd = new SqlCommand("item_insert");
+            cmd.Parameters.AddWithValue("@Itemid",maxid+1);
+            cmd.Parameters.AddWithValue("@Iname",TextBox1.Text.Trim());
+            cmd.Parameters.AddWithValue("@Pcid",Session["ChoosedProductCategory"]);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+               ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+            }
+            finally
+            {
+               con.Close();
+               con.Dispose();
+            }
+            String val = Convert.ToString(maxid + 1);
+            closePopup(val);
+        }
+    }
+    protected void closePopup(String id)
     {
         if (!id.Equals(""))
         {
-            String val2 = "", val3 = "",val4="",val5="";
+            String val2 = "", val3 = "";
             String val1 = id;
-            string strQuery = "select Iname,Pcname,Balance,Uname from ItemDetails,ProductCategory,ItemBalance,UnitDetails where ItemDetails.Itemid=ItemBalance.Itemid and ItemDetails.pcid=ProductCategory.pcid and ItemBalance.Unitid=UnitDetails.Unitid and ItemDetails.Itemid="+val1;
+            string strQuery = "select Iname,Pcname from ItemTable,ProductCategory where ItemTable.pcid=ProductCategory.pcid and Itemid="+val1;
             String strConnString = "Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand(strQuery);
@@ -123,15 +203,9 @@ public partial class ItemAdd : System.Web.UI.Page
             {
                 val2 = dr["Iname"].ToString();
                 val3 = dr["Pcname"].ToString();
-                val4 = dr["Balance"].ToString();
-                val5 = dr["Uname"].ToString();
             }
             con.Close();
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "hidePopup", "callParentWindowHideMethod(\"" + val1 + "\",\"" + val3 + "\",\"" + val2 + "\",\"" + val4 + "\" ,\"" + val5 + "\" );", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "hidePopup", "callParentWindowHideMethod(\"" + val1 + "\",\"" + val2 + "\",\"" + val3 + "\" );", true);
         }
-    }
-    protected void Button4_Click(object sender, EventArgs e)
-    {
-        BindGrid();
     }
 }

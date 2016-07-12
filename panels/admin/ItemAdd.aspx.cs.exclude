@@ -127,7 +127,7 @@ public partial class ItemAdd : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Store/ProductCategoryAdd.aspx");
+        Response.Redirect("ProductCategoryAdd.aspx");
     }
     //This is for adding new item in a product category
     /*protected void Button2_Click(object sender, EventArgs e)

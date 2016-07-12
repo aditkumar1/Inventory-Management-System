@@ -1,13 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/store/admin/MasterPage.master" AutoEventWireup="true" CodeFile="EntrySuccessfull.aspx.cs" Inherits="EntrySuccessfull" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="EntrySuccessfull.aspx.cs" Inherits="EntrySuccessfull" %>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder1">
     <div id="content" class="box">
         <h1>Entry Successfull</h1>
       <!-- Headings -->
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/store/ProductEntry.aspx">Add Another Entry Into Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="ProductEntry.aspx">Add Another Entry Into Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/store/ProductEntrySearch.aspx">Search An Entry In The Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="ProductEntryModify.aspx">Modify An Entry Of The Register</asp:HyperLink>
+        </p>
+        <p class="msg info">
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="ProductEntrySearch.aspx">Search An Entry In The Register</asp:HyperLink>
         </p>
       <!-- Tabs -->
       </div>
@@ -23,9 +26,9 @@
         </div>
       <!-- /padding -->
         <ul class="box">
-          <li><a href="/store/ProductEntry.aspx">Inward Register Entry</a></li>
-          <li><a href="/store/ProductEntryModify.aspx">Modify Inward Register</a></li>
-          <li><a href="/store/ProductEntrySearch.aspx">Search Inward Register</a><ul>
+          <li><a href="ProductEntry.aspx">Inward Register Entry</a></li>
+          <li><a href="ProductEntryModify.aspx">Modify Inward Register</a></li>
+          <li><a href="ProductEntrySearch.aspx">Search Inward Register</a><ul>
               <li>&nbsp;</ul>
           </li>
     </ul>  </div>

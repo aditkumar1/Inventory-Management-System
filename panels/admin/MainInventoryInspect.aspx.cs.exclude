@@ -88,7 +88,7 @@ public partial class Store_PurchaseItemSummary : System.Web.UI.Page
         Session["order"] = DropDownList1.SelectedValue;
         Session["category"] = DropDownList2.SelectedValue;
         Session["Item"] = TextBox1.Text;
-        Response.Redirect("~/store/admin/MainInventoryInspect.aspx");
+        Response.Redirect("MainInventoryInspect.aspx");
     }
     protected void OnPageIndexChanged(object sender, GridViewPageEventArgs e)
     {

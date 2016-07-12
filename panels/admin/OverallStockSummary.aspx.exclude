@@ -11,9 +11,9 @@
         </div>
       <!-- /padding -->
         <ul class="box">
-            <li><a href="/store/admin/OverallStockSummary.aspx">Overall Stock Summary</a></li>
-            <li><a href="/store/admin/ProductEntrySummary.aspx">Product Entry Summary</a></li>
-            <li><a href="/store/admin/ProductIssueSummary.aspx">Product Issue Summary</a></li>
+            <li><a href="OverallStockSummary.aspx">Overall Stock Summary</a></li>
+            <li><a href="ProductEntrySummary.aspx">Product Entry Summary</a></li>
+            <li><a href="ProductIssueSummary.aspx">Product Issue Summary</a></li>
         </ul>
     </div>
     <!-- /aside -->

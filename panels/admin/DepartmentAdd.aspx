@@ -27,7 +27,7 @@
         </table>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MainConnection %>"
             SelectCommand="SELECT * FROM DepartmentTable"
-            InsertCommand="INSERT INTO DepartmentTable VALUES ((Select max(Depid) from DepartmentTable)+1,@Depname)"
+            InsertCommand="INSERT INTO DepartmentTable VALUES ((Select isnull(max(Depid),0) from DepartmentTable)+1,@Depname)"
             UpdateCommand="UPDATE DepartmentTable SET Depname = @Depname WHERE Depid = @Depid"
             DeleteCommand="DELETE FROM DepartmentTable WHERE Depid = @Depid">
             <InsertParameters>

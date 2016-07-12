@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/store/MasterPage.master" AutoEventWireup="true" CodeFile="IssueEntrySuccessful.aspx.cs" Inherits="EntrySuccessfull" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="IssueEntrySuccessful.aspx.cs" Inherits="EntrySuccessfull" %>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder1">
     <div id="content" class="box">
         <h1>Issue Entry Successfull</h1>
       <!-- Headings -->
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Store/IssueSlip.aspx">Add Another Entry Into Issue Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="IssueSlip.aspx">Add Another Entry Into Issue Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Store/IssueModify.aspx">Modify An Entry Of The Issue Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="IssueModify.aspx">Modify An Entry Of The Issue Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Store/IssueSearch.aspx">Search An Entry In The Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="IssueSearch.aspx">Search An Entry In The Register</asp:HyperLink>
         </p>
       <!-- Tabs -->
       </div>
@@ -26,9 +26,9 @@
         </div>
       <!-- /padding -->
         <ul class="box">
-          <li><a href="/store/IssueSlip.aspx">Issue Register Entry</a></li>
-          <li><a href="/store/IssueModify.aspx">Modify Issue Register</a></li>
-          <li><a href="/store/IssueSearch.aspx">Search Issue Register</a></li>
+          <li><a href="IssueSlip.aspx">Issue Register Entry</a></li>
+          <li><a href="IssueModify.aspx">Modify Issue Register</a></li>
+          <li><a href="IssueSearch.aspx">Search Issue Register</a></li>
     </ul>  </div>
     <!-- /aside -->
     <hr class="noscreen" />

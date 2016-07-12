@@ -4,13 +4,13 @@
         <h1>Issue Entry Successfull</h1>
       <!-- Headings -->
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Store/IssueSlip.aspx">Add Another Entry Into Issue Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="IssueSlip.aspx">Add Another Entry Into Issue Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Store/IssueModify.aspx">Modify An Entry Of The Issue Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="IssueModify.aspx">Modify An Entry Of The Issue Register</asp:HyperLink>
         </p>
         <p class="msg info">
-            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Store/IssueSearch.aspx">Search An Entry In The Register</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="IssueSearch.aspx">Search An Entry In The Register</asp:HyperLink>
         </p>
       <!-- Tabs -->
       </div>

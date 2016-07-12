@@ -127,7 +127,7 @@ public partial class Store_PurchaseItemSummary : System.Web.UI.Page
     {
         Session["category"] = DropDownList2.SelectedValue;
         Session["Item"] = DropDownList3.SelectedValue;
-        Response.Redirect("~/store/user/StockRegister.aspx");
+        Response.Redirect("StockRegister.aspx");
     }
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
