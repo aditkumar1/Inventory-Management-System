@@ -14,10 +14,6 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="~/css/mystyle.css" />
 
     <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/switcher.js"></script>
-    <script type="text/javascript" src="/js/toggle.js"></script>
-    <script type="text/javascript" src="/js/ui.core.js"></script>
-    <script type="text/javascript" src="/js/ui.tabs.js"></script>
     <script type="text/javascript" src="/js/Application.js"></script>
 
 </head>
