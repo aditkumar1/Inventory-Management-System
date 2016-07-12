@@ -1,0 +1,143 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+public partial class Store_PurchaseItemSummary : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if(!Page.IsPostBack)
+        {
+            BindDropDown();
+            if (Session["codesearch"]!=null&&Session["category"]!=null&&Session["Item"]!=null)
+            {
+                TextBox1.Text = Session["Item"].ToString();
+                TextBox4.Text = Session["codesearch"].ToString();
+                DropDownList2.SelectedValue = Session["category"].ToString();
+                //BindField(Session["mindate"].ToString(), Session["maxdate"].ToString());
+                Session.Clear();
+            }
+            BindField();
+        }
+   }
+    private void BindDropDown()
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Pcid,Pcname from ProductCategory", con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList2.DataSource = ds;
+        DropDownList2.DataTextField = "Pcname";
+        DropDownList2.DataValueField = "Pcid";
+        DropDownList2.DataBind();
+        DropDownList2.Items.Insert(0, new ListItem("All", ""));
+        con.Close();
+        con.Dispose();
+    }
+  /*
+    private void SetDate()
+    {
+        String strConnString = "Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=Store;integrated security=yes;";
+        String Datemin = "", Datemax = "";
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select CONVERT(varchar(10),min(EntryDetails.Date)) as MinDate,CONVERT(varchar(10),max(EntryDetails.Date)) as MaxDate from EntryDetails", con);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if(dr.Read())
+        {
+            Datemin = dr["MinDate"].ToString();
+            Datemax = dr["MaxDate"].ToString();
+        }
+        con.Close();
+        con.Dispose();
+    }
+    */
+    private void BindField()
+    {
+        //TextBox2.Text = Datemin;
+        //TextBox3.Text = Datemax;
+        //Label1.Text = TextBox2.Text;
+        //Label2.Text = TextBox3.Text;
+        String pcname = "";
+        if (DropDownList2.SelectedValue.Equals(""))
+            pcname = "%%";
+        else
+            pcname = DropDownList2.SelectedItem.Text;
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("sum_stock",con);
+        cmd.Parameters.AddWithValue("@CodeSearch", "%" + TextBox4.Text + "%");
+        cmd.Parameters.AddWithValue("@InameSearch", "%" + TextBox1.Text + "%");
+        cmd.Parameters.AddWithValue("@PcSearch", pcname);
+        cmd.CommandType = CommandType.StoredProcedure;
+        SqlDataReader dr = cmd.ExecuteReader();
+        if (dr.Read())
+        {
+            Label4.Text = dr["sum"].ToString();
+        }
+        con.Close();
+        BindGrid();
+    }
+    private void BindGrid()
+    {
+        String pcname = "";
+        if (DropDownList2.SelectedValue.Equals(""))
+            pcname = "%%";
+        else
+            pcname= DropDownList2.SelectedItem.Text;
+        DateTime time = DateTime.Now;              // Use current time
+        string format = "dd/MM/yyyy  HH:mm";    // Use this format
+        Label3.Text = (time.ToString(format));
+        Label5.Text = (time.ToString(format));
+        DataTable dt = new DataTable();
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand("master_stock");
+        //SqlCommand cmd2 = new SqlCommand("sum_stock");
+        cmd.Parameters.AddWithValue("@CodeSearch", "%" + TextBox4.Text + "%");
+        cmd.Parameters.AddWithValue("@InameSearch","%"+TextBox1.Text+"%");
+        cmd.Parameters.AddWithValue("@PcSearch",pcname);
+        //cmd2.Parameters.AddWithValue("@CodeSearch", "%" + TextBox4.Text + "%");
+        //cmd2.Parameters.AddWithValue("@InameSearch", "%" + TextBox1.Text + "%");
+        //cmd2.Parameters.AddWithValue("@PcSearch", pcname);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Connection = con;
+        //cmd2.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        //Session["mindate"] = Request.Form[TextBox2.UniqueID].Trim();
+        //Session["maxdate"] = Request.Form[TextBox3.UniqueID].Trim();
+        Session["codesearch"] = TextBox4.Text;
+        Session["category"] = DropDownList2.SelectedValue;
+        Session["Item"] = TextBox1.Text;
+        Response.Redirect("~/store/user/StockRegister.aspx");
+    }
+}

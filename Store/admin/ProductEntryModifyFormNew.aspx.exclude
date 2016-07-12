@@ -1,0 +1,208 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master"  MaintainScrollPositionOnPostback="true" CodeFile="ProductEntryModifyFormNew.aspx.cs" Inherits="ProductEntry" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+
+<asp:Content ID="Content2" runat="server" contentplaceholderid="ContentPlaceHolder1">
+   <!--
+        <script>
+            function hideEditModalPopup(popupid, val1, val2, val3, val4,val5)
+            {
+                $('#ContentPlaceHolder1_HiddenField2').val(val1);
+                $('#ContentPlaceHolder1_TextBox5').val(val2);
+                $('#ContentPlaceHolder1_TextBox10').val(val3);
+                $('#ContentPlaceHolder1_Label2').html("Product Balance Is " + val4);
+                $('#ContentPlaceHolder1_Label3').html(val5);
+                $find(popupid).hide();
+                return false;
+            }
+       </script>
+    <script>
+            function hideEditModalPopup2(popupid, val1, val2, val3)
+            {
+                $('#ContentPlaceHolder1_HiddenField1').val(val1);
+                $('#ContentPlaceHolder1_TextBox3').val(val2);
+                $('#ContentPlaceHolder1_TextBox4').val(val3);
+                $find(popupid).hide();
+                return false;
+            }
+        </script>
+   -->
+    <div id="content" class="box">
+        <h1>Inward Register Entry</h1>
+      <!-- Headings -->
+      <!-- Table -->
+        <br />
+        <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Red" Text="Items Successfull Saved. Input Other Items For Same GE NO..." Visible="False"></asp:Label>
+        <br />
+        <br />
+        <table  width="100%" border="0">
+            <tr>
+                <td style="height: 50px; width: 200px;">Gate Entry No
+                    (GE NO)<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox1" runat="server" Width="200px" style="height: 20px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    </td>
+                <td style="height: 50px; width: 200px;">Invoice/Challan No<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox2" runat="server" Width="200px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    &nbsp;&nbsp;
+                    </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Vendor Name</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:DropDownList ID="DropDownList1" Width="200px" runat="server" style="margin-left: 0px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    </asp:DropDownList>
+                &nbsp; <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="DropDownList1" ErrorMessage="*" ForeColor="#CC0000" InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    <br/>
+                    <br/>
+                    <asp:TextBox ID="TextBox4" runat="server" Width="200px" TextMode="MultiLine" ReadOnly="True" BackColor="Silver" ></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                </td>
+                <td style="height: 50px; width: 200px;" colspan="2">
+                <table style="width:100%">
+                    <tr>
+                <td style="height: 50px; width: 200px;">Date (yyyy-mm-dd)<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox runat="server" id="TextBox9"  Width="200px" ClientIDMode="Static" />
+                    <asp:CalendarExtender ID="TextBox9_CalendarExtender" runat="server" Enabled="True" TargetControlID="TextBox9" Format="yyyy-MM-dd" >
+                    </asp:CalendarExtender>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TextBox9" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                  </td>
+                </tr>
+                   <tr>
+                          <td style="height: 50px; width: 200px;">Mode Of Payment (MOP)</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox8" runat="server" Width="200px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TextBox8" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    &nbsp;
+                </td>
+                    </tr>
+                </table>
+                   </td> 
+            </tr>
+            <tr>
+                 <td colspan="4">
+                     <br/>
+                     Status : <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                     <br/>
+                     <fieldset>
+                         <legend>Items</legend>
+                     <div>
+       <asp:GridView ID="GridView1" runat="server"
+            HeaderStyle-BackColor = "blue"
+            AutoGenerateColumns = "false" Font-Names = "Arial" 
+            Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B" DataKeyNames="Mrno"
+            OnRowDataBound="GridView1_RowDataBound" AllowPaging = "false"  Width="100%" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" ShowFooter="true" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
+                    <AlternatingRowStyle BackColor="#C2D69B" />
+                    <Columns>
+                        <asp:TemplateField  ItemStyle-Width="0%">
+                        <ItemStyle Width="0%" />
+                                <ItemTemplate>
+                             <asp:HiddenField ID="HiddenItemid" runat="server" Value='<%# Bind("Mrno") %>'></asp:HiddenField>
+                         </ItemTemplate>
+                            </asp:TemplateField>
+                        <asp:TemplateField  HeaderText="Sr" ItemStyle-Width="5%">
+                        <ItemStyle Width="5%" />
+                            <ItemTemplate>
+                         <asp:Label ID="ll" runat="server" Text='<%# Bind("Srno") %>'></asp:Label>
+                     </ItemTemplate>
+                        </asp:TemplateField>
+                       <asp:TemplateField  HeaderText="Product Name" ItemStyle-Width="2000px">
+                        <ItemStyle Width="200px" />
+                            <ItemTemplate>
+                         <asp:Label ID="LabelItem" runat="server" Text='<%# Bind("Iname") %>'></asp:Label>
+                     </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField  HeaderText="Product Category" ItemStyle-Width="2000px">
+                        <ItemStyle Width="200px" />
+                            <ItemTemplate>
+                         <asp:Label ID="LabelCategory" runat="server" Text='<%# Bind("Pcname") %>'></asp:Label>
+                     </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="QReceived" HeaderText="Quantity Received" ItemStyle-Width="10%">
+                        <ItemStyle Width="10%" />
+                        </asp:BoundField>
+                        <asp:TemplateField  HeaderText="Unit" ItemStyle-Width="10%">
+                        <ItemStyle Width="10%" />
+                            <ItemTemplate>
+                         <asp:Label ID="Labelu" runat="server" Text='<%# Bind("Uname") %>'></asp:Label>
+                     </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-Width="10%">
+                        <ItemStyle Width="10%" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="ItemTotalCost" HeaderText="Cost(Rs)" ItemStyle-Width="10%">
+                        <ItemStyle Width="10%" />
+                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="Discount" ItemStyle-Width="5%">
+                                    <ItemTemplate >
+                                        <asp:Label ID="lblnet22" runat="server" Text='<%# Eval("Discount")%>' />
+                                    </ItemTemplate>
+                                      <EditItemTemplate>
+                                        <asp:DropDownList ID="DropDownList5" runat="server"  Width="80%">
+                                            <asp:ListItem Value="1" Text="Rs"/>
+                                            <asp:ListItem Value="2" Text="%"/>
+                                             </asp:DropDownList>
+                                          <br/>
+                                          <asp:TextBox ID="discount" runat="server" Text='<%# Eval("Discount")%>' Width="80%"/>
+                                    </EditItemTemplate>
+                                 </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Vat" ItemStyle-Width="5%">
+                                    <ItemTemplate >
+                                        <asp:Label ID="lblnet23" runat="server" Text='<%# Eval("Vat")%>' />
+                                    </ItemTemplate>
+                                      <EditItemTemplate>
+                                        <asp:DropDownList ID="DropDownList6" runat="server"  Width="80%">
+                                            <asp:ListItem Value="1" Text="Rs"/>
+                                            <asp:ListItem Value="2" Text="%"/>
+                                             </asp:DropDownList>
+                                          <br/>
+                                          <asp:TextBox ID="vat" runat="server" Text='<%# Eval("Vat")%>' Width="80%"/>
+                                    </EditItemTemplate>
+                                 </asp:TemplateField>
+                        <asp:BoundField DataField="Tax" HeaderText="Tax(Rs)" ItemStyle-Width="5%">
+                        <ItemStyle Width="5%" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Misc" HeaderText="Misc(Rs)" ItemStyle-Width="5%">
+                        <ItemStyle Width="5%" />
+                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="Net(Rs)" ItemStyle-Width="5%">
+                                    <ItemTemplate >
+                                        <asp:Label ID="lblnet" runat="server" Text='<%# Eval("Net")%>' />
+                                    </ItemTemplate>
+                                      <FooterTemplate>
+                                        <asp:Label ID="nettotal" runat="server" />
+                                    </FooterTemplate>
+                                 </asp:TemplateField>
+                         <asp:CommandField ButtonType="Link" ShowEditButton="true"
+                ItemStyle-Width="100" />
+                    </Columns>
+                                 <footerstyle backcolor="#6699ff" font-bold="True" forecolor="Black" />
+                                <alternatingrowstyle backcolor="White" />
+                    <HeaderStyle BackColor="Blue" />
+        </asp:GridView>
+    </div>
+                         </fieldset>
+                  </td>
+              </tr>
+            </table>
+        <br/>
+        <span style="color: #CC0000">* Mandatory Fields<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <br />
+        <br />
+        </span>
+        <br/>
+        <div>
+        <asp:Button ID="Button5" runat="server" Text="Modify" Width="200px" OnClick="Button5_Click" Height="40px" align="left"/>
+      <!-- Table (TABLE) -->
+      <!-- Form -->
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="Button6" runat="server" Text="Reset" Width="201px" OnClick="Button6_Click" Height="40px" style="margin-left: 0px" CausesValidation="false" align="right" />
+      </div>
+        </div>
+</asp:Content>
+
+

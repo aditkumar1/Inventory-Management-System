@@ -1,0 +1,163 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Store/user/MasterPage.master" AutoEventWireup="true" CodeFile="OverallStockSummary.aspx.cs" Inherits="Store_PurchaseItemSummary" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+<asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder2">
+    <div id="aside" class="box" style="font-weight:bold">
+        <div class="padding box">
+        <!-- Logo (Max. width = 200px) -->
+            <p id="logo">
+                <a href="#">
+                <img src="tmp/logo.png" alt="" /></a></p>
+      <!-- Search --><!-- Create a new project -->
+        </div>
+      <!-- /padding -->
+        <ul class="box">
+            <li><a href="/store/user/OverallStockSummary.aspx">Overall Stock Summary</a></li>
+            <li><a href="/store/user/ProductEntrySummary.aspx">Product Entry Summary</a></li>
+            <li><a href="/store/user/ProductIssueSummary.aspx">Product Issue Summary</a></li>
+        </ul>
+    </div>
+    <!-- /aside -->
+    <hr class="noscreen" />
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="ContentPlaceHolder1">
+    <script type = "text/javascript">
+        function PrintPanel() {
+            var panel = document.getElementById("<%=Panel1.ClientID %>");
+             var printWindow = window.open('', '', 'height=400,width=800');
+             printWindow.document.write('<html><head><title>DIV Contents</title>');
+             printWindow.document.write('</head><body >');
+             printWindow.document.write(panel.innerHTML);
+             printWindow.document.write('</body></html>');
+             printWindow.document.close();
+             setTimeout(function () {
+                 printWindow.print();
+             }, 500);
+             return false;
+         }
+    </script>
+    <div id="content" class="box">
+        <h1>Master Stock Register</h1>
+      <!-- /col33 -->
+        <fieldset>
+            <legend>Settings</legend>
+            <table class="nostyle" width="100%">
+                <tr>
+                    <td style="width:20%;">Search By Item Code</td>
+                    <td style="width: 30%">
+                        <asp:TextBox ID="TextBox4" runat="server" Height="20px" Width="80%"></asp:TextBox>
+                    </td>
+                    <td style="width:16%;">Search By Item Name</td>
+                    <td style="width: 30%">
+                        <asp:TextBox ID="TextBox1" runat="server" Height="20px" Width="80%"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="va-top" style="width:20%;">Search By Product Category</td>
+                    <td style="width: 30%">
+                        <asp:DropDownList ID="DropDownList2" runat="server" Height="20px" Width="50%">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="t-right">
+                        <asp:Button ID="Button1" runat="server" Height="31px" style="margin-left: 0px" Text="Search" Width="98px" OnClick="Button1_Click" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+      <!-- Definition List -->
+        <br />
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <br />
+        <asp:Button ID="Button2" runat="server" Height="30px" Text="Print" OnClientClick = "return PrintPanel();" Width="151px" />
+        <br />
+        <br />
+        <asp:Panel ID="Panel1" runat="server" >
+        <table width="100%" border="2px" height="100%">
+        <tr>
+            <td colspan="4" align="center" style="height:50px">
+                <%= System.Web.Configuration.WebConfigurationManager.AppSettings["Institute"] %>
+                <br />
+                <%= System.Web.Configuration.WebConfigurationManager.AppSettings["InstituteAddress"] %></td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center" style="height: 40px">
+                &nbsp;Stock Movement Summary</td>
+        </tr>
+        <tr>
+            <td colspan="4" align="left" style="height: 30px" >
+                Stock Details as on
+                <asp:Label ID="Label5" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" valign="TOP">
+            <br/>
+            <asp:GridView ID="GridView1" runat="server" 
+                    HeaderStyle-BackColor = "white"
+                    AutoGenerateColumns = "false" Font-Names = "Arial"
+                    Font-Size = "11pt" ForeColor="#4C4C4C"
+                    AllowPaging = "false"  Width="100%" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Font-Bold="true" >
+                            <AlternatingRowStyle BackColor="#C2D69B" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="S.No." ItemStyle-Width="5%">
+                                     <ItemTemplate>
+                                           <%# Container.DataItemIndex + 1 %>
+                                     </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Itemid" HeaderText="Item Code" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                  </asp:BoundField>
+                                <asp:BoundField DataField="Iname" HeaderText="Item Name" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                  </asp:BoundField>
+                                 <asp:BoundField DataField="Pcname" HeaderText="Product Category" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="QReceived" HeaderText="Quantity Received" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Qissued" HeaderText="Quantity Issued" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Uname" HeaderText="Unit" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Balance" HeaderText="Current Balance" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="ItemTotalCost" HeaderText="Total Cost(in Rs)" ItemStyle-Width="150px">
+                                <ItemStyle Width="150px" />
+                                </asp:BoundField>
+                             </Columns>
+                               <rowstyle backcolor="#EFF3FB" />
+                                <editrowstyle backcolor="#2461BF" />
+                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="false" ForeColor="#333333" />
+                                <pagerstyle backcolor="#2461BF" forecolor="White" horizontalalign="Center" />
+                                 <footerstyle backcolor="#507CD1" font-bold="false" forecolor="White" />
+                                <alternatingrowstyle backcolor="White" /> 
+                </asp:GridView>
+                <br/>
+                </td>
+         </tr>
+              <tr>
+            <td colspan="4"  style="height: 30px" align="right" valign="TOP">
+                Item Total Cost: Rs
+                <asp:Label ID="Label4" runat="server"></asp:Label>
+                /-<br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" align="left" style="height: 30px">
+                Print Date:
+                <asp:Label ID="Label3" runat="server"></asp:Label>
+                <br />
+            </td>
+        </tr>
+    </table>
+        </asp:Panel>
+      </div>
+</asp:Content>
+
+

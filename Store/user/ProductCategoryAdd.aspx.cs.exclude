@@ -1,0 +1,180 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+public partial class ItemAdd : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        BindGrid();
+        RadioCheck();
+    }
+    private void BindGrid()
+    {
+        string strQuery = "select Pcid,Pcname from ProductCategory";
+        DataTable dt = new DataTable();
+        String strConnString ="Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand(strQuery);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+        }
+        if(GridView1.Rows.Count<=0)
+        {
+            ItemAddChoice2.Checked = true;
+            ItemAddChoice1.Enabled = false;
+            RadioCheck();
+        }
+    }
+    private void GetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i]
+                            .Cells[0].FindControl("RadioButton1");
+            if (rb != null)
+            {
+                if (rb.Checked)
+                {
+                    HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                    if (hf != null)
+                    {
+                        ViewState["SelectedID"] = hf.Value;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    private void SetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i].Cells[0]
+                                            .FindControl("RadioButton1");
+            if (rb != null)
+            {
+                HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                if (hf != null && ViewState["SelectedID"] != null)
+                {
+                    if (hf.Value.Equals(ViewState["SelectedID"].ToString()))
+                    {
+                        rb.Checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    protected void OnPaging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        GridView1.DataBind();
+        SetSelectedRecord();
+    }
+    private void RadioCheck()
+    {
+        if(ItemAddChoice1.Checked)
+        {
+            Button1.Enabled = true;
+            GridView1.Enabled = true;
+            TextBox1.Enabled = false;
+            Button2.Enabled = false;
+        }
+        if(ItemAddChoice2.Checked)
+        {
+            TextBox1.Enabled = true;
+            Button2.Enabled = true;
+            Button1.Enabled = false;
+            GridView1.Enabled = false;
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        if (ViewState["SelectedID"] != null)
+        {
+            Session["ChoosedProductCategory"] = ViewState["SelectedID"];
+            Response.Redirect("~/store/ItemAdd.aspx");
+        }
+    }
+    protected void Button2_Click1(object sender, EventArgs e)
+    {
+        if (!TextBox1.Text.Equals(""))
+        {
+            String strQuery1 = "select max(pcid) from ProductCategory ";
+            String strConnString = "Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd1 = new SqlCommand(strQuery1, con);
+            con.Open();
+            SqlDataReader dr = cmd1.ExecuteReader();
+            int maxid = 0;
+            try
+            {
+                if (dr != null)
+                {
+                    if (dr.Read() && !dr.IsDBNull(0))
+                    {
+                        maxid = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        maxid = 1000;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+               ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+            }
+            finally
+            {
+                dr.Close();
+            }
+            String strQuery2 = "insert into ProductCategory(Pcid,Pcname) Values(" + (maxid + 1) + ",'" + TextBox1.Text + "')";
+            SqlCommand cmd = new SqlCommand(strQuery2);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+               ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+            Session["ChoosedProductCategory"] = Convert.ToString(maxid + 1);
+            Response.Redirect("~/store/ItemAdd.aspx");
+        }
+    }
+}

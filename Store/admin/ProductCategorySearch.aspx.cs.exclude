@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+public partial class ItemAdd : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        BindGrid();
+    }
+    private void BindGrid()
+    {
+        string strQuery = "select Pcid,Pcname from ProductCategory where Pcname LIKE '%"+TextBox2.Text+"%'";
+        DataTable dt = new DataTable();
+        String strConnString ="Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand(strQuery);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+        }
+    }
+    private void GetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i]
+                            .Cells[0].FindControl("RadioButton1");
+            if (rb != null)
+            {
+                if (rb.Checked)
+                {
+                    HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                    if (hf != null)
+                    {
+                        ViewState["SelectedID"] = hf.Value;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    private void SetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i].Cells[0]
+                                            .FindControl("RadioButton1");
+            if (rb != null)
+            {
+                HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                if (hf != null && ViewState["SelectedID"] != null)
+                {
+                    if (hf.Value.Equals(ViewState["SelectedID"].ToString()))
+                    {
+                        rb.Checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    protected void OnPaging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        GridView1.DataBind();
+        SetSelectedRecord();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        if (ViewState["SelectedID"] != null)
+        {
+            Session["ChoosedProductCategory"] = ViewState["SelectedID"];
+            Response.Redirect("~/store/ItemSearch.aspx");
+        }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        BindGrid();
+    }
+}

@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="HomeTheme.master.cs" Inherits="HomeTheme" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%= System.Web.Configuration.WebConfigurationManager.AppSettings["AppName"] %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/2col.css" title="2col" />
+    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="css/1col.css" title="1col" />
+    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="css/main-ie6.css" /><![endif]-->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/toggle.js"></script>
+    <script type="text/javascript" src="js/ui.core.js"></script>
+    <script type="text/javascript" src="js/ui.tabs.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="main">
+        <div id="upper" align="center">
+            <!-- Tray -->
+            <div id="tray" class="box">
+                <p>
+                    <asp:Label ID="Label2" runat="server"  Font-Bold="true" Font-Size="XX-Large"></asp:Label></p>
+                <p>
+                    <asp:Label ID="Label3" runat="server"  Font-Bold="True" Font-Size="Large"></asp:Label></p>
+            </div>
+            <!-- Menu -->
+            <div id="menu" class="box" align="center">
+                <asp:Label ID="Label1" runat="server" Font-Bold="true" Font-Size="XX-Large" ForeColor="#000099"></asp:Label>
+            </div>
+            <div id="cols" class="box">
+                <!-- Aside (Left Column) -->
+                <div id="aside" class="box" style="font-weight: bold">
+                    <!-- /padding -->
+                    <ul class="box">
+                        <li><a href="Default.aspx">HOME</a></li>
+                        <li><a href="login.aspx">LOGIN</a> </li>
+                    </ul>
+                </div>
+                <!-- /aside -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                    <hr class="noscreen" />
+                    <!-- Content (Right Column) -->
+                    <div id="content" class="box">
+                        <h1>Styles</h1>
+                        <!-- Headings -->
+                        <h2>Heading H2</h2>
+                    </div>
+                </asp:ContentPlaceHolder>
+            </div>
+            <!-- /cols -->
+            <!-- /footer -->
+        </div>
+        <hr class="noscreen" />
+        <!-- Footer -->
+        <div id="footer" class="box">
+            <p class="f-left">&copy;Licensed under GPL, All Rights Reserved &reg;</p>
+            <p class="f-right">DEVELOPER: ADIT KUMAR</p>
+            <p class="f-right">&nbsp; </p>
+            <p class="f-right">&nbsp;</p>
+            <p class="f-right">&nbsp;</p>
+        </div>
+    </div>
+</body>
+</html>

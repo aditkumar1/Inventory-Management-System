@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+public partial class ProductEntry : System.Web.UI.Page
+{
+    decimal total = 0;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if(!Page.IsPostBack)
+        {
+            if (Session["SelectedGEno"] != null && Session["SelectedInvoiceno"] != null && Session["Date"] != null)
+            {
+                TextBox1.Text = Session["SelectedGEno"].ToString();
+                TextBox2.Text = Session["SelectedInvoiceno"].ToString();
+                BindVendor();
+                BindField();
+                BindGrid();
+            }
+        }
+    }
+    private void BindVendor()
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;//"Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Vendorid,Vfirm from VendorDetails Order By Vfirm", con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList1.DataSource = ds;
+        DropDownList1.DataTextField ="Vfirm";
+        DropDownList1.DataValueField ="Vendorid";
+        DropDownList1.DataBind();
+        DropDownList1.Items.Insert(0, new ListItem("--------Select Vendor---------", "0"));
+        con.Close();
+        con.Dispose();
+    }
+    private void BindField()
+    {
+        string strQuery = "select EntryDetails.Vendorid,Vaddress,EntryDetails.Invoiceno,Convert(varchar(10),Date) as Date,MOP,Status from EntryDetails,InvoiceDetails,VendorDetails where EntryDetails.Mrno=InvoiceDetails.Mrno and EntryDetails.Vendorid=VendorDetails.Vendorid and GEno=" + Session["SelectedGEno"].ToString() + " and EntryDetails.Invoiceno=" + Session["SelectedInvoiceno"].ToString() + " and EntryDetails.Date='" + Session["Date"].ToString() + "'";
+        // string strQuery2 = "select Vat,Tax,Misc,NetItemCost as sum,Vat+Tax+Misc+NetItemCost as Net from InvoiceExtraCost where GEno=" + Session["SelectedGEno"].ToString() + " and Invoiceno=" + Session["SelectedInvoiceno"].ToString()+" and Date='"+Session["Date"].ToString()+"'";
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand(strQuery, con);
+        //SqlCommand cmd2 = new SqlCommand(strQuery2, con);
+        try
+        {
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                DropDownList1.SelectedValue=dr["Vendorid"].ToString();
+                TextBox9.Text = dr["Date"].ToString();
+                TextBox8.Text = dr["MOP"].ToString();
+                TextBox4.Text = dr["Vaddress"].ToString();
+                Label2.Text=dr["Status"].ToString();
+            }
+            dr.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: " + ex.ToString() + "\" );", true);
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Label lblrecv = (Label)e.Row.FindControl("lblnet");
+            decimal qty = decimal.Parse(lblrecv.Text);
+            //qty = Math.Round(qty,2);
+            total = total + qty;
+        }
+        if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            Label lblTotalqty1 = (Label)e.Row.FindControl("nettotal");
+            total = Math.Round(total, 2);
+            lblTotalqty1.Text = "Net\nAamount:" + total.ToString();
+        }
+    }
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        BindGrid();
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        if (!Label2.Text.Equals("Verified"))
+        {
+            try
+            {
+                String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(strConnString);
+                int mrno = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0].ToString());
+                GridViewRow row = (GridViewRow)GridView1.Rows[e.RowIndex];
+                //TextBox txtname=(TextBox)gr.cell[].control[];
+                TextBox qty = (TextBox)row.Cells[4].Controls[0];
+                TextBox desc = (TextBox)row.Cells[6].Controls[0];
+                TextBox cost = (TextBox)row.Cells[7].Controls[0];
+                decimal costtotal = decimal.Parse(Request.Form[cost.UniqueID]);
+                TextBox disc = (TextBox)row.Cells[8].FindControl("discount");
+                DropDownList drop1 = (DropDownList)row.Cells[8].FindControl("DropDownList5");
+                decimal discount = decimal.Parse(Request.Form[disc.UniqueID].Trim());
+                decimal actualdiscount = 0;
+                if (Request.Form[drop1.UniqueID].Equals("2"))
+                {
+                    actualdiscount = (discount * costtotal) / 100;
+                }
+                else
+                {
+                    actualdiscount = discount;
+                }
+                TextBox vat = (TextBox)row.Cells[9].FindControl("Vat");
+                DropDownList drop2 = (DropDownList)row.Cells[9].FindControl("DropDownList6");
+                decimal vattotal = decimal.Parse(Request.Form[vat.UniqueID].Trim());
+                decimal actualvat = 0;
+                if (Request.Form[drop2.UniqueID].Equals("2"))
+                {
+                    actualvat = (vattotal * (costtotal - actualdiscount)) / 100;
+                }
+                else
+                {
+                    actualvat = vattotal;
+                }
+                TextBox tax = (TextBox)row.Cells[10].Controls[0];
+                TextBox misc = (TextBox)row.Cells[11].Controls[0];
+                GridView1.EditIndex = -1;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("AdminModifyMain", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Mrno", mrno);
+                cmd.Parameters.AddWithValue("@Description", Request.Form[desc.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@QReceived", Request.Form[qty.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@ItemTotalCost", Request.Form[cost.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@Discount", actualdiscount);
+                cmd.Parameters.AddWithValue("@Vat", actualvat);
+                cmd.Parameters.AddWithValue("@Tax", Request.Form[tax.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@Misc", Request.Form[misc.UniqueID].Trim());
+                cmd.ExecuteNonQuery();
+                con.Close();
+                BindGrid();
+            }
+            catch(Exception ex)
+            {
+                GridView1.EditIndex = -1;
+                BindGrid();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Error Encountered. Common Source: While entering Cost do not prefix Rs or suffix % after the number \" );", true);
+            }
+        }
+        else
+        {
+            GridView1.EditIndex = -1;
+            BindGrid();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Verified Entries Cannot be changed \" );", true);
+        }
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        BindGrid();
+    }
+    private void BindGrid()
+    {
+        string strQuery = "select Pcname as Pcname,Iname,InvoiceDetails.Description,EntryDetails.Sno as Sno,InvoiceDetails.Mrno,InvoiceDetails.Itemid,QReceived,ItemTotalCost,Uname,Discount,Vat,Tax,Misc,(Vat+Tax+Misc+ItemTotalCost-Discount) as Net,ROW_NUMBER() OVER (ORDER BY Iname) as Srno from EntryDetails,InvoiceDetails,ProductCategory,ItemDetails,UnitDetails,ItemBalance where EntryDetails.Mrno=InvoiceDetails.Mrno and InvoiceDetails.Itemid=ItemDetails.Itemid and ItemDetails.Pcid=ProductCategory.Pcid and ItemBalance.Itemid=ItemDetails.Itemid and UnitDetails.Unitid=ItemBalance.Unitid and GEno=" + Session["SelectedGEno"].ToString() + " and EntryDetails.Invoiceno=" + Session["SelectedInvoiceno"].ToString() + " and EntryDetails.Date='" + Session["Date"].ToString() + "'";
+        DataTable dt = new DataTable();
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand(strQuery);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            ViewState["dt"] = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+            //throw ex;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: " + ex.ToString() + "\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+            total = 0;
+        }
+    }
+    private void BindAddress(String id)
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString; ;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Vaddress from VendorDetails where Vendorid="+id, con);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if(dr.Read())
+        {
+            TextBox4.Text=dr["Vaddress"].ToString();
+        }
+        dr.Close();
+        con.Close();
+        con.Dispose();
+    }
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        String index = DropDownList1.SelectedValue;
+        if (!index.Equals("0"))
+        {
+            BindAddress(index);
+        }
+        else
+        {
+            TextBox4.Text = "";
+        }
+    }
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        if (!Label2.Text.Equals("Verified"))
+        {
+            if (ViewState["dt"] != null)
+            {
+                String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(strConnString);
+                SqlParameter param1 = new SqlParameter("@Itemid", SqlDbType.Int);
+                SqlParameter param2 = new SqlParameter("@QReceived", SqlDbType.Float);
+                SqlParameter param3 = new SqlParameter("@Description", SqlDbType.VarChar);
+                SqlParameter param4 = new SqlParameter("@ItemTotalCost", SqlDbType.Float);
+                SqlParameter param5 = new SqlParameter("@Discount", SqlDbType.Float);
+                SqlParameter param6 = new SqlParameter("@Vat", SqlDbType.Float);
+                SqlParameter param7 = new SqlParameter("@Tax", SqlDbType.Float);
+                SqlParameter param8 = new SqlParameter("@Misc", SqlDbType.Float);
+                SqlParameter param9 = new SqlParameter("@Mrno", SqlDbType.Int);
+                SqlParameter param10 = new SqlParameter("@Sno", SqlDbType.Int);
+                SqlCommand cmd = new SqlCommand("StoreModify", con);
+                cmd.Parameters.AddWithValue("@GEno", Request.Form[TextBox1.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@Invoiceno", Request.Form[TextBox2.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@Vendorid", DropDownList1.SelectedValue.Trim());
+                cmd.Parameters.AddWithValue("@Date", Request.Form[TextBox9.UniqueID].Trim());
+                cmd.Parameters.AddWithValue("@MOP", TextBox8.Text.Trim());
+                cmd.Parameters.Add(param1);
+                cmd.Parameters.Add(param2);
+                cmd.Parameters.Add(param3);
+                cmd.Parameters.Add(param4);
+                cmd.Parameters.Add(param5);
+                cmd.Parameters.Add(param6);
+                cmd.Parameters.Add(param7);
+                cmd.Parameters.Add(param8);
+                cmd.Parameters.Add(param9);
+                cmd.Parameters.Add(param10);
+                DataTable dt = (DataTable)ViewState["dt"];
+                if (dt == null)
+                {
+                    Response.Write("null");
+                }
+                // dt = getDatatable();
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    param1.Value = dr["Itemid"].ToString();
+                    param2.Value = dr["QReceived"].ToString();
+                    param3.Value = dr["Description"].ToString();
+                    param4.Value = dr["ItemTotalCost"].ToString();
+                    param5.Value = dr["Discount"].ToString();
+                    param6.Value = dr["Vat"].ToString();
+                    param7.Value = dr["Tax"].ToString();
+                    param8.Value = dr["Misc"].ToString();
+                    param9.Value = dr["Mrno"].ToString();
+                    param10.Value = dr["Sno"].ToString();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error.Check all Entries like required date pattern etc\" );", true);
+                        //break;
+                    }
+                }
+                con.Close();
+                Session["Modified"] = "yes";
+                Response.Redirect("ProductEntryModify.aspx");
+            }
+        }
+        else
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Verified Entries Cannot be changed \" );", true);
+        }
+   }
+       // Response.Redirect("~/store/EntrySuccessfull.aspx");
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ProductEntryModifyForm.aspx");
+    }
+}

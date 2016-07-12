@@ -1,0 +1,39 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/store/MasterPage.master" AutoEventWireup="true" CodeFile="EntrySuccessfull.aspx.cs" Inherits="EntrySuccessfull" %>
+<asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder1">
+    <div id="content" class="box">
+        <h1>Entry Successfull</h1>
+      <!-- Headings -->
+        <p class="msg info">
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/store/ProductEntry.aspx">Add Another Entry Into Register</asp:HyperLink>
+        </p>
+        <p class="msg info">
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/store/ProductEntryModify.aspx">Modify An Entry Of The Register</asp:HyperLink>
+        </p>
+        <p class="msg info">
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/store/ProductEntrySearch.aspx">Search An Entry In The Register</asp:HyperLink>
+        </p>
+      <!-- Tabs -->
+      </div>
+</asp:Content>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="ContentPlaceHolder2">
+    <div id="aside" class="box">
+        <div class="padding box">
+        <!-- Logo (Max. width = 200px) -->
+            <p id="logo">
+                <a href="#">
+                <img src="tmp/logo.png" alt="" /></a></p>
+      <!-- Search --><!-- Create a new project -->
+        </div>
+      <!-- /padding -->
+        <ul class="box">
+          <li><a href="/store/ProductEntry.aspx">Inward Register Entry</a></li>
+          <li><a href="/store/ProductEntryModify.aspx">Modify Inward Register</a></li>
+          <li><a href="/store/ProductEntrySearch.aspx">Search Inward Register</a><ul>
+              <li>&nbsp;</ul>
+          </li>
+    </ul>  </div>
+    <!-- /aside -->
+    <hr class="noscreen" />
+</asp:Content>
+
+

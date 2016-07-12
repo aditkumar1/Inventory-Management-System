@@ -1,0 +1,87 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ItemAdd.aspx.cs" Inherits="ItemAdd" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type = "text/javascript">
+        function RadioCheck(rb)
+        {
+            var gv = document.getElementById("<%=GridView1.ClientID%>");
+             var rbs = gv.getElementsByTagName("input");
+             var row = rb.parentNode.parentNode;
+             for (var i = 0; i < rbs.length; i++) {
+                 if (rbs[i].type == "radio") {
+                     if (rbs[i].checked && rbs[i] != rb) {
+                         rbs[i].checked = false;
+                         break;
+                     }
+                 }
+             }
+         }
+    </script> 
+    <script type="text/javascript">
+        function callParentWindowHideMethod(val1,val2,val3) {
+            if (window.parent.hideEditModalPopup) {
+                window.parent.hideEditModalPopup('addItemPopup',val1,val2,val3);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function fillParentTextBox(val)
+        {
+            window.parent.document.getelementById("TextBox5").value = val;
+        }
+    </script>
+    <style type="text/css">
+        #form1 {
+            width: 467px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="width: 327px">
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
+        <asp:Label ID="Label1" runat="server" Text="SELECT ITEMS"></asp:Label>
+        <br />
+        <br />
+        <asp:RadioButton ID="ItemAddChoice1" runat="server" AutoPostBack="True" Checked="True" GroupName="ItemChoice" />
+        <asp:Label ID="Label2" runat="server" Text="Choose From Existing"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+    </div>
+        &nbsp;&nbsp;&nbsp;
+        <asp:GridView ID="GridView1" runat="server"
+            HeaderStyle-BackColor = "green"
+            AutoGenerateColumns = "false" Font-Names = "Arial"
+            Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B" Width="100%"
+            AllowPaging = "true" OnPageIndexChanging="OnPaging">
+            <Columns>
+            <asp:TemplateField>
+            <ItemTemplate>
+                <asp:RadioButton ID="RadioButton1" runat="server"
+                    onclick = "RadioCheck(this);"/>
+                <asp:HiddenField ID="HiddenField1" runat="server"
+                    Value = '<%#Eval("Itemid")%>' />
+            </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField ItemStyle-Width="150px" DataField="Itemid"
+                HeaderText="Item ID"  />
+            <asp:BoundField ItemStyle-Width="150px" DataField="Iname"
+                HeaderText="Item Name" />
+            </Columns>
+        </asp:GridView>
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Proces"  OnClientClick="javascript:$find('addItemPopup').hide(); return false;" OnClick="Button1_Click1" />
+        <br />
+        <br />
+        <asp:RadioButton ID="ItemAddChoice2" runat="server" AutoPostBack="True" GroupName="ItemChoice" />
+        <asp:Label ID="Label3" runat="server" Text="Create New Item In This Category"></asp:Label>
+        <p style="margin-left: 40px">
+            <asp:Label ID="Label4" runat="server" Text="Input New Item "></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server" Width="161px"></asp:TextBox>
+            &nbsp;</p>
+        <asp:Button ID="Button2" runat="server" Text="Create" OnClick="Button2_Click" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>StoreManagement</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>Web</ProjectType>
+    <ProjectSubType>CSharp</ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>StoreManagement</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ProjectName.webproj" File="ProjectName.webproj" ReplaceParameters="true">
+      <Folder Name="App_Code" TargetFolderName="App_Code" />
+      <ProjectItem ReplaceParameters="false" TargetFileName="association_welcome.jpg">association_welcome.jpg</ProjectItem>
+      <Folder Name="Bin" TargetFolderName="Bin">
+        <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll">AjaxControlToolkit.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll.refresh">AjaxControlToolkit.dll.refresh</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.pdb">AjaxControlToolkit.pdb</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="AjaxMin.dll">AjaxMin.dll</ProjectItem>
+        <Folder Name="ar" TargetFolderName="ar">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="cs" TargetFolderName="cs">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="de" TargetFolderName="de">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="es" TargetFolderName="es">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="fr" TargetFolderName="fr">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="he" TargetFolderName="he">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="hi" TargetFolderName="hi">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="false" TargetFileName="HtmlAgilityPack.dll">HtmlAgilityPack.dll</ProjectItem>
+        <Folder Name="it" TargetFolderName="it">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="ja" TargetFolderName="ja">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="ko" TargetFolderName="ko">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.dll">Microsoft.Data.Edm.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.Edm.xml">Microsoft.Data.Edm.xml</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.dll">Microsoft.Data.OData.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.OData.xml">Microsoft.Data.OData.xml</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.WindowsAzure.Storage.dll">Microsoft.WindowsAzure.Storage.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.WindowsAzure.Storage.xml">Microsoft.WindowsAzure.Storage.xml</ProjectItem>
+        <Folder Name="nl" TargetFolderName="nl">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="pl" TargetFolderName="pl">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="pt" TargetFolderName="pt">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="ru" TargetFolderName="ru">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.dll">System.Spatial.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="System.Spatial.xml">System.Spatial.xml</ProjectItem>
+        <Folder Name="tr-TR" TargetFolderName="tr-TR">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="zh-CHS" TargetFolderName="zh-CHS">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="zh-CHT" TargetFolderName="zh-CHT">
+          <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="zh-Hans" TargetFolderName="zh-Hans">
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+        <Folder Name="zh-Hant" TargetFolderName="zh-Hant">
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="css" TargetFolderName="css">
+        <ProjectItem ReplaceParameters="true" TargetFileName="1col.css">1col.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="2col.css">2col.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="main-ie6.css">main-ie6.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="main.css">main.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="mystyle.css">mystyle.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="reset.css">reset.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="style.css">style.css</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx">Default.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.cs">Default.aspx.cs</ProjectItem>
+      <Folder Name="design" TargetFolderName="design">
+        <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-left.gif">btn-create-left.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-right.gif">btn-create-right.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="content-h1.gif">content-h1.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="content.gif">content.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="dot.gif">dot.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ico-delete.gif">ico-delete.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ico-done.gif">ico-done.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ico-info.gif">ico-info.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ico-warning.gif">ico-warning.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="menu-left.gif">menu-left.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="menu-right.gif">menu-right.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="menu.gif">menu.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="separator.gif">separator.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="submenu-active.gif">submenu-active.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="submenu-sub.gif">submenu-sub.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="switcher-1col.gif">switcher-1col.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="switcher-2col.gif">switcher-2col.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="tabs-l.gif">tabs-l.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="tabs-r.gif">tabs-r.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="tray-logout.gif">tray-logout.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="tray.gif">tray.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ul-ul.gif">ul-ul.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ul.gif">ul.gif</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="HomeTheme.master">HomeTheme.master</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="HomeTheme.master.cs">HomeTheme.master.cs</ProjectItem>
+      <Folder Name="images" TargetFolderName="images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="bg.png">bg.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="close.gif">close.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="expand.gif">expand.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gradient.png">gradient.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="pass-icon.png">pass-icon.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="admin-icon.png">admin-icon.png</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
+      <Folder Name="js" TargetFolderName="js">
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.js">jquery.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="switcher.js">switcher.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="toggle.js">toggle.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ui.core.js">ui.core.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ui.tabs.js">ui.tabs.js</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login - Copy.aspx">Login - Copy.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login - Copy.aspx.cs">Login - Copy.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login.aspx">Login.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login.aspx.cs">Login.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master">MasterPage.master</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master.cs">MasterPage.master.cs</ProjectItem>
+      <Folder Name="Store" TargetFolderName="Store">
+        <Folder Name="admin" TargetFolderName="admin">
+          <Folder Name="Bin" TargetFolderName="Bin">
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll">AjaxControlToolkit.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll.refresh">AjaxControlToolkit.dll.refresh</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.pdb">AjaxControlToolkit.pdb</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxMin.dll">AjaxMin.dll</ProjectItem>
+            <Folder Name="ar" TargetFolderName="ar">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="cs" TargetFolderName="cs">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="de" TargetFolderName="de">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="es" TargetFolderName="es">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="fr" TargetFolderName="fr">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="he" TargetFolderName="he">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="hi" TargetFolderName="hi">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="HtmlAgilityPack.dll">HtmlAgilityPack.dll</ProjectItem>
+            <Folder Name="it" TargetFolderName="it">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ja" TargetFolderName="ja">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ko" TargetFolderName="ko">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.dll">Microsoft.Data.Edm.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.Edm.xml">Microsoft.Data.Edm.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.dll">Microsoft.Data.OData.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.OData.xml">Microsoft.Data.OData.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.WindowsAzure.Storage.dll">Microsoft.WindowsAzure.Storage.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.WindowsAzure.Storage.xml">Microsoft.WindowsAzure.Storage.xml</ProjectItem>
+            <Folder Name="nl" TargetFolderName="nl">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="pl" TargetFolderName="pl">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="pt" TargetFolderName="pt">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ru" TargetFolderName="ru">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.dll">System.Spatial.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="System.Spatial.xml">System.Spatial.xml</ProjectItem>
+            <Folder Name="tr-TR" TargetFolderName="tr-TR">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-CHS" TargetFolderName="zh-CHS">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-CHT" TargetFolderName="zh-CHT">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-Hans" TargetFolderName="zh-Hans">
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-Hant" TargetFolderName="zh-Hant">
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="css" TargetFolderName="css">
+            <ProjectItem ReplaceParameters="true" TargetFileName="1col.css">1col.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="2col.css">2col.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="main-ie6.css">main-ie6.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="main.css">main.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="mystyle.css">mystyle.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="reset.css">reset.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="style.css">style.css</ProjectItem>
+          </Folder>
+          <Folder Name="design" TargetFolderName="design">
+            <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-left.gif">btn-create-left.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-right.gif">btn-create-right.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="content-h1.gif">content-h1.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="content.gif">content.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="dot.gif">dot.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-delete.gif">ico-delete.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-done.gif">ico-done.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-info.gif">ico-info.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-warning.gif">ico-warning.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu-left.gif">menu-left.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu-right.gif">menu-right.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu.gif">menu.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="separator.gif">separator.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="submenu-active.gif">submenu-active.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="submenu-sub.gif">submenu-sub.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="switcher-1col.gif">switcher-1col.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="switcher-2col.gif">switcher-2col.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tabs-l.gif">tabs-l.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tabs-r.gif">tabs-r.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tray-logout.gif">tray-logout.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tray.gif">tray.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ul-ul.gif">ul-ul.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ul.gif">ul.gif</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EntryAdd.aspx">EntryAdd.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EntryAdd.aspx.cs">EntryAdd.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EntrySuccessfull.aspx.exclude">EntrySuccessfull.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EntrySuccessfull.aspx.cs.exclude">EntrySuccessfull.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ExistingNoAdd.aspx.exclude">ExistingNoAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ExistingNoAdd.aspx.cs.exclude">ExistingNoAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="IssueEntrySuccessful.aspx.exclude">IssueEntrySuccessful.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="IssueEntrySuccessful.aspx.cs.exclude">IssueEntrySuccessful.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueModify.aspx">IssueModify.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueModify.aspx.cs">IssueModify.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueModifyForm.aspx">IssueModifyForm.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueModifyForm.aspx.cs">IssueModifyForm.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearch.aspx">IssueSearch.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearch.aspx.cs">IssueSearch.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearchSlip.aspx">IssueSearchSlip.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearchSlip.aspx.cs">IssueSearchSlip.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ItemAdd.aspx">ItemAdd.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ItemAdd.aspx.cs">ItemAdd.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.2.exclude">ItemAdd.aspx.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.cs.2.exclude">ItemAdd.aspx.cs.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.exclude">ItemAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.cs.exclude">ItemAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemSearch.aspx.exclude">ItemSearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemSearch.aspx.cs.exclude">ItemSearch.aspx.cs.exclude</ProjectItem>
+          <Folder Name="js" TargetFolderName="js">
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.js">jquery.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="switcher.js">switcher.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="toggle.js">toggle.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ui.core.js">ui.core.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ui.tabs.js">ui.tabs.js</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainInventoryInspect.aspx">MainInventoryInspect.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainInventoryInspect.aspx.cs">MainInventoryInspect.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master">MasterPage.master</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master.cs">MasterPage.master.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductCategoryAdd.aspx">ProductCategoryAdd.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductCategoryAdd.aspx.cs">ProductCategoryAdd.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.2.exclude">ProductCategoryAdd.aspx.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.cs.2.exclude">ProductCategoryAdd.aspx.cs.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.exclude">ProductCategoryAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.cs.exclude">ProductCategoryAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategorySearch.aspx.exclude">ProductCategorySearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategorySearch.aspx.cs.exclude">ProductCategorySearch.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntryModify.aspx">ProductEntryModify.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntryModify.aspx.cs">ProductEntryModify.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntryModifyForm.aspx">ProductEntryModifyForm.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntryModifyForm.aspx.cs">ProductEntryModifyForm.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearch.aspx">ProductEntrySearch.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearch.aspx.cs">ProductEntrySearch.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearchSlip.aspx">ProductEntrySearchSlip.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearchSlip.aspx.cs">ProductEntrySearchSlip.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySummary.aspx">ProductEntrySummary.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySummary.aspx.cs">ProductEntrySummary.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductIssueSummary.aspx">ProductIssueSummary.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductIssueSummary.aspx.cs">ProductIssueSummary.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductModify.aspx">ProductModify.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductModify.aspx.cs">ProductModify.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="security-systems2.jpg">security-systems2.jpg</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StockRegister.aspx">StockRegister.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StockRegister.aspx.cs">StockRegister.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StoreInventoryInspect.aspx">StoreInventoryInspect.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StoreInventoryInspect.aspx.cs">StoreInventoryInspect.aspx.cs</ProjectItem>
+          <Folder Name="tmp" TargetFolderName="tmp">
+            <ProjectItem ReplaceParameters="false" TargetFileName="logo.gif">logo.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="adminMain.aspx">adminMain.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="adminMain.aspx.cs">adminMain.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="VendorAdd.aspx">VendorAdd.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="VendorAdd.aspx.cs">VendorAdd.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="VendorSearch.aspx.exclude">VendorSearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="VendorSearch.aspx.cs.exclude">VendorSearch.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+        </Folder>
+        <Folder Name="admin" TargetFolderName="admin">
+          <Folder Name="Bin" TargetFolderName="Bin">
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll">AjaxControlToolkit.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.dll.refresh">AjaxControlToolkit.dll.refresh</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.pdb">AjaxControlToolkit.pdb</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="AjaxMin.dll">AjaxMin.dll</ProjectItem>
+            <Folder Name="ar" TargetFolderName="ar">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="cs" TargetFolderName="cs">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="de" TargetFolderName="de">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="es" TargetFolderName="es">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="fr" TargetFolderName="fr">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="he" TargetFolderName="he">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="hi" TargetFolderName="hi">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="HtmlAgilityPack.dll">HtmlAgilityPack.dll</ProjectItem>
+            <Folder Name="it" TargetFolderName="it">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ja" TargetFolderName="ja">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ko" TargetFolderName="ko">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.dll">Microsoft.Data.Edm.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.Edm.xml">Microsoft.Data.Edm.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.dll">Microsoft.Data.OData.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.Data.OData.xml">Microsoft.Data.OData.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.WindowsAzure.Storage.dll">Microsoft.WindowsAzure.Storage.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Microsoft.WindowsAzure.Storage.xml">Microsoft.WindowsAzure.Storage.xml</ProjectItem>
+            <Folder Name="nl" TargetFolderName="nl">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="pl" TargetFolderName="pl">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="pt" TargetFolderName="pt">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="ru" TargetFolderName="ru">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.dll">System.Spatial.dll</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="System.Spatial.xml">System.Spatial.xml</ProjectItem>
+            <Folder Name="tr-TR" TargetFolderName="tr-TR">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-CHS" TargetFolderName="zh-CHS">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-CHT" TargetFolderName="zh-CHT">
+              <ProjectItem ReplaceParameters="false" TargetFileName="AjaxControlToolkit.resources.dll">AjaxControlToolkit.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-Hans" TargetFolderName="zh-Hans">
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+            <Folder Name="zh-Hant" TargetFolderName="zh-Hant">
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.Edm.resources.dll">Microsoft.Data.Edm.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="Microsoft.Data.OData.resources.dll">Microsoft.Data.OData.resources.dll</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="System.Spatial.resources.dll">System.Spatial.resources.dll</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="css" TargetFolderName="css">
+            <ProjectItem ReplaceParameters="true" TargetFileName="1col.css">1col.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="2col.css">2col.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="main-ie6.css">main-ie6.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="main.css">main.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="mystyle.css">mystyle.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="reset.css">reset.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="style.css">style.css</ProjectItem>
+          </Folder>
+          <Folder Name="design" TargetFolderName="design">
+            <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-left.gif">btn-create-left.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="btn-create-right.gif">btn-create-right.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="content-h1.gif">content-h1.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="content.gif">content.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="dot.gif">dot.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-delete.gif">ico-delete.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-done.gif">ico-done.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-info.gif">ico-info.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ico-warning.gif">ico-warning.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu-left.gif">menu-left.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu-right.gif">menu-right.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="menu.gif">menu.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="separator.gif">separator.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="submenu-active.gif">submenu-active.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="submenu-sub.gif">submenu-sub.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="switcher-1col.gif">switcher-1col.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="switcher-2col.gif">switcher-2col.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tabs-l.gif">tabs-l.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tabs-r.gif">tabs-r.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tray-logout.gif">tray-logout.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tray.gif">tray.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ul-ul.gif">ul-ul.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ul.gif">ul.gif</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EntrySuccessfull.aspx.exclude">EntrySuccessfull.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="EntrySuccessfull.aspx.cs.exclude">EntrySuccessfull.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ExistingNoAdd.aspx.exclude">ExistingNoAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ExistingNoAdd.aspx.cs.exclude">ExistingNoAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="IssueEntrySuccessful.aspx.exclude">IssueEntrySuccessful.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="IssueEntrySuccessful.aspx.cs.exclude">IssueEntrySuccessful.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearch.aspx">IssueSearch.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearch.aspx.cs">IssueSearch.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearchSlip.aspx">IssueSearchSlip.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSearchSlip.aspx.cs">IssueSearchSlip.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSlip.aspx">IssueSlip.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IssueSlip.aspx.cs">IssueSlip.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.2.exclude">ItemAdd.aspx.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.cs.2.exclude">ItemAdd.aspx.cs.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.exclude">ItemAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemAdd.aspx.cs.exclude">ItemAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemSearch.aspx.exclude">ItemSearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ItemSearch.aspx.cs.exclude">ItemSearch.aspx.cs.exclude</ProjectItem>
+          <Folder Name="js" TargetFolderName="js">
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.js">jquery.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="switcher.js">switcher.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="toggle.js">toggle.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ui.core.js">ui.core.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ui.tabs.js">ui.tabs.js</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainInventoryInspect.aspx">MainInventoryInspect.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainInventoryInspect.aspx.cs">MainInventoryInspect.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master">MasterPage.master</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MasterPage.master.cs">MasterPage.master.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.2.exclude">ProductCategoryAdd.aspx.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.cs.2.exclude">ProductCategoryAdd.aspx.cs.2.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.exclude">ProductCategoryAdd.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategoryAdd.aspx.cs.exclude">ProductCategoryAdd.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategorySearch.aspx.exclude">ProductCategorySearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="ProductCategorySearch.aspx.cs.exclude">ProductCategorySearch.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntry.aspx">ProductEntry.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntry.aspx.cs">ProductEntry.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearch.aspx">ProductEntrySearch.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearch.aspx.cs">ProductEntrySearch.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearchSlip.aspx">ProductEntrySearchSlip.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySearchSlip.aspx.cs">ProductEntrySearchSlip.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySummary.aspx">ProductEntrySummary.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductEntrySummary.aspx.cs">ProductEntrySummary.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductIssueSummary.aspx">ProductIssueSummary.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ProductIssueSummary.aspx.cs">ProductIssueSummary.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="security-systems2.jpg">security-systems2.jpg</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StockRegister.aspx">StockRegister.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StockRegister.aspx.cs">StockRegister.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StoreInventoryInspect.aspx">StoreInventoryInspect.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="StoreInventoryInspect.aspx.cs">StoreInventoryInspect.aspx.cs</ProjectItem>
+          <Folder Name="tmp" TargetFolderName="tmp">
+            <ProjectItem ReplaceParameters="false" TargetFileName="logo.gif">logo.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="adminMain.aspx">adminMain.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="adminMain.aspx.cs">adminMain.aspx.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="VendorSearch.aspx.exclude">VendorSearch.aspx.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="VendorSearch.aspx.cs.exclude">VendorSearch.aspx.cs.exclude</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+        </Folder>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="style2.css">style2.css</ProjectItem>
+      <Folder Name="tmp" TargetFolderName="tmp">
+        <ProjectItem ReplaceParameters="false" TargetFileName="logo.gif">logo.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

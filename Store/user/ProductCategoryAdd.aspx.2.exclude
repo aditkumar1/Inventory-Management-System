@@ -1,0 +1,73 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProductCategoryAdd.aspx.cs" Inherits="ItemAdd" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type = "text/javascript">
+        function RadioCheck(rb)
+        {
+            var gv = document.getElementById("<%=GridView1.ClientID%>");
+             var rbs = gv.getElementsByTagName("input");
+             var row = rb.parentNode.parentNode;
+             for (var i = 0; i < rbs.length; i++) {
+                 if (rbs[i].type == "radio") {
+                     if (rbs[i].checked && rbs[i] != rb) {
+                         rbs[i].checked = false;
+                         break;
+                     }
+                 }
+             }
+         }
+    </script> 
+    <style type="text/css">
+        #form1 {
+            width: 467px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="width: 327px">
+        <asp:Label ID="Label1" runat="server" Text="SELECT PRODUCT CATEGORY"></asp:Label>
+        <br />
+        <br />
+        <asp:RadioButton ID="ItemAddChoice1" runat="server" AutoPostBack="True" Checked="True" GroupName="ItemChoice" />
+        <asp:Label ID="Label2" runat="server" Text="Choose From Existing"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+    </div>
+        &nbsp;&nbsp;&nbsp;
+        <asp:GridView ID="GridView1" runat="server"
+            HeaderStyle-BackColor = "green"
+            AutoGenerateColumns = "false" Font-Names = "Arial"
+            Font-Size = "11pt" AlternatingRowStyle-BackColor = "#C2D69B"
+            AllowPaging = "true" OnPageIndexChanging="OnPaging" Width="100%">
+            <Columns>
+            <asp:TemplateField>
+            <ItemTemplate>
+                <asp:RadioButton ID="RadioButton1" runat="server"
+                    onclick = "RadioCheck(this);"/>
+                <asp:HiddenField ID="HiddenField1" runat="server"
+                    Value = '<%#Eval("Pcid")%>' />
+            </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField ItemStyle-Width="150px" DataField="Pcid"
+                HeaderText="ID"  />
+            <asp:BoundField ItemStyle-Width="150px" DataField="Pcname"
+                HeaderText="Product Category Name" />
+            </Columns>
+        </asp:GridView>
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Process" OnClick="Button1_Click" />
+        <br />
+        <br />
+        <asp:RadioButton ID="ItemAddChoice2" runat="server" AutoPostBack="True" GroupName="ItemChoice" />
+        <asp:Label ID="Label3" runat="server" Text="Create New Category"></asp:Label>
+        <p style="margin-left: 40px">
+            <asp:Label ID="Label4" runat="server" Text="Input New Product Category"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server" Width="161px"></asp:TextBox>
+            &nbsp;</p>
+        <asp:Button ID="Button2" runat="server" Text="Create" OnClick="Button2_Click1" style="height: 26px" />
+    </form>
+</body>
+</html>

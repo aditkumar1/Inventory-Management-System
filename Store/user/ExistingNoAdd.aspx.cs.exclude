@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+public partial class ItemAdd : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        BindGrid();
+    }
+    private void BindGrid()
+    {
+        string strQuery = "select GEno,Sname,Billno,Vno,Date from GateEntry";
+        DataTable dt = new DataTable();
+        String strConnString ="Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand(strQuery);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+        }
+    }
+    private void GetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i]
+                            .Cells[0].FindControl("RadioButton1");
+            if (rb != null)
+            {
+                if (rb.Checked)
+                {
+                    HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                    if (hf != null)
+                    {
+                        ViewState["SelectedID"] = hf.Value;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    private void SetSelectedRecord()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            RadioButton rb = (RadioButton)GridView1.Rows[i].Cells[0]
+                                            .FindControl("RadioButton1");
+            if (rb != null)
+            {
+                HiddenField hf = (HiddenField)GridView1.Rows[i]
+                                    .Cells[0].FindControl("HiddenField1");
+                if (hf != null && ViewState["SelectedID"] != null)
+                {
+                    if (hf.Value.Equals(ViewState["SelectedID"].ToString()))
+                    {
+                        rb.Checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    protected void OnPaging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        GridView1.DataBind();
+        SetSelectedRecord();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        GetSelectedRecord();
+        if (ViewState["SelectedID"] != null)
+        {
+            String val2="", val3="", val4="", val5="";
+            String val1 = ViewState["SelectedID"].ToString();
+            string strQuery = "select TOP 1 Sname,GateEntry.Billno,Vno,Date from GateEntry where GEno=" + val1;
+            String strConnString = "Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand(strQuery);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                val2= dr["Sname"].ToString();
+                val3 = dr["Billno"].ToString();
+                val4 = dr["Vno"].ToString();
+                val5 = dr["Date"].ToString();
+            }
+            con.Close();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "hideExistingPopup", "callExistingWindowHideMethod(\"" + val1 + "\",\"" + val2 + "\",\"" + val3 + "\",\"" + val4 + "\",\"" + val5 + "\" );", true);
+        }
+    }
+}

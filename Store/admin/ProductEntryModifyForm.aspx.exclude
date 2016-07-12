@@ -1,0 +1,193 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="ProductEntryModifyForm.aspx.cs" Inherits="ProductEntry"  MaintainScrollPositionOnPostback="true"%>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+<asp:Content ID="Content2" runat="server" contentplaceholderid="ContentPlaceHolder1">
+    <script>
+        function hideEditModalPopup(popupid, val1, val2, val3, val4, val5) {
+            $('#ContentPlaceHolder1_HiddenField2').val(val1);
+            $('#ContentPlaceHolder1_TextBox5').val(val2);
+            $('#ContentPlaceHolder1_TextBox10').val(val3);
+            $('#ContentPlaceHolder1_Label2').html("Product Balance Is " + val4);
+            $('#ContentPlaceHolder1_Label3').html(val5);
+            $find(popupid).hide();
+            return false;
+        }
+       </script>
+    <script>
+        function setLabelValue(val1,val2)
+        {
+            $('#ContentPlaceHolder1_Label2').html("Product Balance Is " + val1);
+            $('#ContentPlaceHolder1_Label3').html(val2);
+            return false;
+        }
+    </script>
+    <script>
+        function hideEditModalPopup2(popupid, val1, val2, val3) {
+            $('#ContentPlaceHolder1_HiddenField1').val(val1);
+            $('#ContentPlaceHolder1_TextBox3').val(val2);
+            $('#ContentPlaceHolder1_TextBox4').val(val3);
+            $find(popupid).hide();
+            return false;
+        }
+        </script>
+    <div id="content" class="box">
+      <!-- Headings -->
+      <!-- Table -->
+           <h1>Inward Register Modify</h1>
+               <br />
+        <asp:Button ID="Button7" runat="server" Height="40px" OnClick="Button7_Click" Text="Back" Width="270px"  CausesValidation="false"/>
+        <br />
+        <br />
+      <!-- Headings -->
+      <!-- Table -->
+        <br />
+        <table class="nostyle" width="100%">
+            <tr>
+                <td style="height: 50px; width: 200px;">Gate Entry No
+                    (GE NO)<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox1" runat="server" Width="200px" style="height: 20px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Invoice/Challan No<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox2" runat="server" Width="200px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    &nbsp;&nbsp;
+                    </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Vendor Name</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:DropDownList ID="DropDownList1" Width="200px" runat="server" style="margin-left: 0px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    </asp:DropDownList>
+                &nbsp; <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="DropDownList1" ErrorMessage="*" ForeColor="#CC0000" InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Vendor Address</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox4" runat="server" Width="200px" TextMode="MultiLine" ReadOnly="True" BackColor="Silver" ></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+               <td style="height: 50px; width: 200px;">Product Category<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:DropDownList ID="DropDownList2" Width="200px" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                    </asp:DropDownList>
+                &nbsp; <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DropDownList2" ErrorMessage="*" ForeColor="#CC0000" InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+             <tr>
+               <td style="height: 50px; width: 200px;">Product Name<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:DropDownList ID="DropDownList4" Width="200px" runat="server" style="margin-left: 0px" OnSelectedIndexChanged="DropDownList4_SelectedIndexChanged" AutoPostBack="True" Enabled="False">
+                    </asp:DropDownList>
+                    &nbsp; <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="DropDownList4" ErrorMessage="*" ForeColor="#CC0000" InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    <br />
+                    &nbsp;<asp:Label ID="Label2" runat="server" ForeColor="#0000CC"></asp:Label>
+                    &nbsp;&nbsp;
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Quantity Received<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox6" runat="server" Width="200px"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TextBox6" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    <asp:RangeValidator runat="server" id="wspXformat" ControlToValidate="TextBox6" MinimumValue="0" Type="Double"  Text="(+ve)" ForeColor="Red"  />
+                    <asp:Label ID="Label3" runat="server" ForeColor="#0000CC">Unit</asp:Label>
+                &nbsp;
+                &nbsp;<asp:DropDownList ID="DropDownList3" runat="server">
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="DropDownList3" ErrorMessage="*" ForeColor="#CC0000" InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Description</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox3" runat="server" Width="200px" TextMode="MultiLine"></asp:TextBox>
+                    </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Total Cost (in Rs)<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox7" runat="server" Width="200px" ></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TextBox7" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Mode Of Payment (MOP)</td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox ID="TextBox8" runat="server" Width="200px"></asp:TextBox>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TextBox8" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 50px; width: 200px;">Date (yyyy-mm-dd)<span style="color: #CC0000">*</span></td>
+                <td style="height: 50px; width: 453px;">
+                    <asp:TextBox runat="server" id="TextBox9"  Width="200px" ClientIDMode="Static" ReadOnly="True" />
+                    <asp:CalendarExtender ID="TextBox9_CalendarExtender" runat="server" Enabled="True" TargetControlID="TextBox9" Format="yyyy-MM-dd" CssClass="cal_Theme2">
+                    </asp:CalendarExtender>
+                &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TextBox9" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <fieldset >
+                          <legend><asp:CheckBox ID="RadioTax" runat="server" Text="Extra Cost On Item(in Rs)" AutoPostBack="True" Checked="True"/></legend>
+                        <table class="nostyle" width="100%">
+                            <tr>
+                                <td style="height: 50px; width:10%;">Discount(in %)</td>
+                             <td style="height: 50px; width: 10%;">
+                            <asp:TextBox ID="EC0" runat="server" Width="70%"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="EC0" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            </td>
+                            <td style="height: 50px; width:10%;">VAT(in %)</td>
+                             <td style="height: 50px; width: 10%;">
+                            <asp:TextBox ID="EC1" runat="server" Width="70%"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="EC1" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            </td>
+                                <td style="height: 50px; width:10%;">S.Tax(in %)</td>
+                             <td style="height: 50px; width: 10%;">
+                            <asp:TextBox ID="EC2" runat="server" Width="70%"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="EC2" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            </td>
+                                <td style="height: 50px; width:10%;">Miscellaneous(in Rs)</td>
+                             <td style="height: 50px; width: 10%;">
+                            <asp:TextBox ID="EC3" runat="server" Width="70%"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="EC3" ErrorMessage="*" ForeColor="#CC0000" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            </td>
+                           </tr>                        
+                        </table>
+                    </fieldset>
+                    </td>
+                </tr>
+        </table>
+        <br/>
+        <span style="color: #CC0000">* Mandatory Fields<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <br />
+        </span>        <br/>
+        <asp:Button ID="Button5" runat="server" Text="Submit" Width="200px" OnClick="Button5_Click" Height="40px" />
+        <asp:Panel ID="Panel1" runat="server" CssClass="Popup" align="center" style = "display:none">
+                    <iframe style=" width: 550px; height: 400px;" id="irm1" src="ProductCategorySearch.aspx" runat="server"></iframe>
+                       <br/><hr/>
+                       <asp:Button ID="Button3" runat="server" Text="Close"  />        
+        </asp:Panel>
+        <asp:Panel ID="Panel2" runat="server" CssClass="Popup" align="center" style = "display:none">
+                    <iframe style=" width: 550px; height: 400px;" id="irm2" src="VendorSearch.aspx" runat="server"></iframe>
+                       <br/><hr/>
+                       <asp:Button ID="Button10" runat="server" Text="Close"  />        
+        </asp:Panel>
+      <!-- Table (TABLE) -->
+      <!-- Form -->
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+</asp:Content>
+
+

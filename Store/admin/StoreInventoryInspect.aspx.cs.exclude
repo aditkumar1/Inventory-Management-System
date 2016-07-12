@@ -1,0 +1,125 @@
+﻿using System;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+public partial class Store_PurchaseItemSummary : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            BindDropDown();
+            if (Session["order"] != null && Session["category"] != null && Session["Item"] != null)
+            {
+                TextBox1.Text = Session["Item"].ToString();
+                DropDownList1.SelectedValue = Session["order"].ToString();
+                DropDownList2.SelectedValue = Session["category"].ToString();
+                BindField();
+                Session.Clear();
+            }
+        }
+        BindField();
+   }
+    private void BindDropDown()
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Pcid,Pcname from ProductCategory", con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList2.DataSource = ds;
+        DropDownList2.DataTextField = "Pcname";
+        DropDownList2.DataValueField = "Pcid";
+        DropDownList2.DataBind();
+        DropDownList2.Items.Insert(0, new ListItem("All", ""));
+        con.Close();
+        con.Dispose();
+    }
+    private void BindField()
+    {
+        BindGrid();
+        DateTime time = DateTime.Now;              // Use current time
+        string format = "dd/MM/yyyy  HH:mm";    // Use this format
+        Label3.Text=(time.ToString(format));
+        //Label3.Text = DateTime.Now.ToString() ;
+    }
+    private void BindGrid()
+    {
+        String strQuery = "";
+        if (DropDownList2.SelectedValue.Equals(""))
+            strQuery = "select Iname,Pcname,Balance,Uname from ProductCategory,ItemDetails,UnitDetails,ItemBalance where ItemDetails.Pcid=ProductCategory.Pcid and ItemDetails.Itemid=ItemBalance.Itemid and ItemBalance.Unitid=UnitDetails.Unitid and Balance>0 and Iname Like '%" + TextBox1.Text + "%'  and ProductCategory.Pcid like '%" + DropDownList2.SelectedItem.Value + "%' Order By " + DropDownList1.SelectedValue;
+        else
+            strQuery = "select Iname,Pcname,Balance,Uname from ProductCategory,ItemDetails,UnitDetails,ItemBalance where ItemDetails.Pcid=ProductCategory.Pcid and ItemDetails.Itemid=ItemBalance.Itemid and ItemBalance.Unitid=UnitDetails.Unitid and Balance>0 and Iname Like '%" + TextBox1.Text + "%'  and ProductCategory.Pcid like '" + DropDownList2.SelectedItem.Value + "' Order By " + DropDownList1.SelectedValue;
+        DataTable dt = new DataTable();
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand(strQuery);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        try
+        {
+            con.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+        catch (Exception ex)
+        {
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "alertError", "alertError(\"Critical Error. Details: "+ ex.ToString()+"\" );", true);
+        }
+        finally
+        {
+            con.Close();
+            sda.Dispose();
+            con.Dispose();
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Session["order"] = DropDownList1.SelectedValue;
+        Session["category"] = DropDownList2.SelectedValue;
+        Session["Item"] = TextBox1.Text;
+        Response.Redirect("StoreInventoryInspect.aspx");
+    }
+    protected void OnPageIndexChanged(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        BindField();
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        GridView1.AllowPaging = false;
+        GridView1.DataBind();
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        Panel1.RenderControl(hw);
+        string gridHTML = sw.ToString().Replace("\"", "'")
+            .Replace(System.Environment.NewLine, "");
+        StringBuilder sb = new StringBuilder();
+        sb.Append("<script type = 'text/javascript'>");
+        sb.Append("window.onload = new function(){");
+        sb.Append("var printWin = window.open('', '', 'left=0");
+        sb.Append(",top=0,width=1000,height=600,status=0');");
+        sb.Append("printWin.document.write(\"");
+        sb.Append(gridHTML);
+        sb.Append("\");");
+        sb.Append("printWin.document.close();");
+        sb.Append("printWin.focus();");
+        sb.Append("printWin.print();");
+        sb.Append("printWin.close();};");
+        sb.Append("</script>");
+        ClientScript.RegisterStartupScript(this.GetType(), "GridPrint", sb.ToString());
+        GridView1.AllowPaging = true;
+        GridView1.DataBind();
+    }
+}

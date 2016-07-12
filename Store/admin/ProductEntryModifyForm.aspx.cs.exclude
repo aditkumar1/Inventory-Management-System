@@ -1,0 +1,332 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+public partial class ProductEntry : System.Web.UI.Page
+{
+    String Sno = "";
+    String Mrno="";
+    SqlTransaction transaction = null;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        TextBox9_CalendarExtender.EndDate = DateTime.Today;
+        if (RadioTax.Checked)
+        {
+            EnableTax();
+        }
+        else
+        {
+            DisableTax();
+        }
+        if(!Page.IsPostBack)
+        {
+            BindVendor();
+            BindProductCategory();
+            if (Session["SelectedSno"] != null && Session["SelectedMrno"] != null)
+            {
+                Sno = Session["SelectedSno"].ToString();
+                Mrno = Session["SelectedMrno"].ToString();
+                FillTextBoxes();
+            }
+            else
+            {
+                Response.Redirect("ProductEntryModify.aspx");
+            }
+        }
+    }
+    private void EnableTax()
+    {
+        EC0.ReadOnly = false;
+        EC1.ReadOnly = false;
+        EC2.ReadOnly = false;
+        EC3.ReadOnly = false;
+        EC0.BackColor = System.Drawing.Color.White;
+        EC1.BackColor = System.Drawing.Color.White;
+        EC2.BackColor = System.Drawing.Color.White;
+        EC3.BackColor = System.Drawing.Color.White;
+    }
+    private void DisableTax()
+    {
+        EC0.Text = "0";
+        EC1.Text = "0";
+        EC2.Text = "0";
+        EC3.Text = "0";
+        EC0.ReadOnly = true;
+        EC1.ReadOnly = true;
+        EC2.ReadOnly = true;
+        EC3.ReadOnly = true;
+        EC0.BackColor = System.Drawing.Color.Silver;
+        EC1.BackColor = System.Drawing.Color.Silver;
+        EC2.BackColor = System.Drawing.Color.Silver;
+        EC3.BackColor = System.Drawing.Color.Silver;
+    }
+    private void BindVendor()
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;//"Server=SANGEETA-PC\\SQLEXPRESS;initial catalog=store;integrated security=yes;";
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Vendorid,Vfirm from VendorDetails Order By Vfirm", con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList1.DataSource = ds;
+        DropDownList1.DataTextField = "Vfirm";
+        DropDownList1.DataValueField = "Vendorid";
+        DropDownList1.DataBind();
+        DropDownList1.Items.Insert(0, new ListItem("--------Select Vendor---------", "0"));
+        con.Close();
+        con.Dispose();
+    }
+    private void BindUnit(String id)
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select UnitDetails.Unitid,Uname from UnitDetails,ItemBalance where ItemBalance.Unitid=UnitDetails.Unitid and Itemid=" + id, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList3.DataSource = ds;
+        DropDownList3.DataTextField = "Uname";
+        DropDownList3.DataValueField = "Unitid";
+        DropDownList3.DataBind();
+        //DropDownList3.Items.Insert(0, new ListItem("Select", "0"));
+        con.Close();
+        con.Dispose();
+    }
+    private void BindBalance(String id)
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Balance from ItemBalance where Itemid=" + id, con);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if (dr.Read())
+        {
+            Label2.Text = "Product Balance In Store Is " + dr["Balance"].ToString();
+        }
+        dr.Close();
+        con.Close();
+        con.Dispose();
+    }
+    private void BindAddress(String id)
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString; ;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Vaddress from VendorDetails where Vendorid=" + id, con);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if (dr.Read())
+        {
+            TextBox4.Text = dr["Vaddress"].ToString();
+        }
+        dr.Close();
+        con.Close();
+        con.Dispose();
+    }
+    private void BindProductCategory()
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Pcid,Pcname  from ProductCategory Order By Pcname", con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList2.DataSource = ds;
+        DropDownList2.DataTextField = "Pcname";
+        DropDownList2.DataValueField = "Pcid";
+        DropDownList2.DataBind();
+        DropDownList2.Items.Insert(0, new ListItem("----Select Product Category----", "0"));
+        con.Close();
+        con.Dispose();
+    }
+    private void BindItem(String s)
+    {
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("Select Itemid,Iname from ItemDetails where Pcid=" + s+"Order By Iname", con);
+        DropDownList4.Enabled = true;
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        DropDownList4.DataSource = ds;
+        DropDownList4.DataTextField = "Iname";
+        DropDownList4.DataValueField = "Itemid";
+        DropDownList4.DataBind();
+        DropDownList4.Items.Insert(0, new ListItem("------------Select Item------------", "0"));
+        con.Close();
+        con.Dispose();
+    }
+    private void FillTextBoxes()
+    {
+        SqlDataReader dr=null;
+        SqlDataReader dr1 = null;
+        string strQuery = "select Sno,VendorDetails.Vendorid as Vendorid,InvoiceDetails.Itemid,GEno,InvoiceDetails.Invoiceno,Isnull(InvoiceDetails.Description,'') as Description,Vaddress,ProductCategory.Pcid,Iname,UnitDetails.Unitid,Balance,Qreceived,ItemTotalCost,MOP,CONVERT(varchar(10),EntryDetails.Date) as Date from EntryDetails,InvoiceDetails,ItemBalance,ItemDetails,ProductCategory,UnitDetails,VendorDetails where EntryDetails.Mrno=InvoiceDetails.Mrno and InvoiceDetails.Itemid=ItemDetails.Itemid and InvoiceDetails.Itemid=ItemBalance.Itemid and ItemBalance.Unitid=UnitDetails.Unitid and EntryDetails.Vendorid=VendorDetails.Vendorid and ItemDetails.Pcid=ProductCategory.Pcid and EntryDetails.Sno=" + Sno + " and EntryDetails.Mrno=" + Mrno;
+        string strQuery2 = "select (Vat/ItemTotalCost)*100 as Vat,(Tax/ItemTotalCost)*100 as Tax,Misc,(Discount/ItemTotalCost)*100 as Discount from EntryDetails,InvoiceDetails,ItemBalance,ItemDetails,ProductCategory,UnitDetails,VendorDetails where EntryDetails.Mrno=InvoiceDetails.Mrno and InvoiceDetails.Itemid=ItemDetails.Itemid and InvoiceDetails.Itemid=ItemBalance.Itemid and ItemBalance.Unitid=UnitDetails.Unitid and EntryDetails.Vendorid=VendorDetails.Vendorid and ItemDetails.Pcid=ProductCategory.Pcid and EntryDetails.Sno=" + Sno + " and EntryDetails.Mrno=" + Mrno;
+        String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+        SqlConnection con = new SqlConnection(strConnString);
+        SqlCommand cmd = new SqlCommand(strQuery);
+        SqlCommand cmd2 = new SqlCommand(strQuery2);
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = con;
+        cmd2.CommandType = CommandType.Text;
+        cmd2.Connection = con;
+        con.Open();
+        try
+        {
+            dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                TextBox1.Text = dr["GEno"].ToString();
+                TextBox2.Text = dr["Invoiceno"].ToString();
+                DropDownList1.SelectedValue = dr["Vendorid"].ToString();
+                TextBox4.Text = dr["Vaddress"].ToString();
+                DropDownList2.SelectedValue = dr["Pcid"].ToString();
+                BindItem(DropDownList2.SelectedValue);
+                DropDownList4.SelectedValue = dr["Itemid"].ToString();
+                BindUnit(DropDownList4.SelectedValue);
+                Label2.Text = "Product Balance is " + dr["Balance"].ToString();
+                TextBox6.Text = dr["Qreceived"].ToString();
+                TextBox3.Text = dr["Description"].ToString();
+                TextBox7.Text = dr["ItemTotalCost"].ToString();
+                TextBox8.Text = dr["MOP"].ToString();
+                TextBox9.Text = dr["Date"].ToString();
+                DropDownList3.SelectedValue = dr["Unitid"].ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            dr.Close();
+            dr.Dispose();
+            //con.Close();
+            //con.Dispose();
+        }
+        if (!TextBox7.Text.ToString().Trim().Equals("0"))
+        {
+            try
+            {
+                dr1 = cmd2.ExecuteReader();
+                if (dr1.Read())
+                {
+                    EC0.Text = dr1["Discount"].ToString();
+                    EC1.Text = dr1["Vat"].ToString();
+                    EC2.Text = dr1["Tax"].ToString();
+                    EC3.Text = dr1["Misc"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (dr1 != null)
+                {
+                    dr1.Close();
+                    dr1.Dispose();
+                }
+            }
+        }
+        else
+        {
+            EC0.Text = "0";
+            EC1.Text = "0";
+            EC2.Text = "0";
+            EC3.Text = "0";
+        }
+        if(con!=null)
+        {
+            con.Close();
+        }
+    }
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+       if (Session["SelectedSno"] != null && Session["SelectedMrno"] != null)
+       {
+           Sno = Session["SelectedSno"].ToString();
+           Mrno = Session["SelectedMrno"].ToString();
+           String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnection"].ConnectionString;
+           SqlConnection con = new SqlConnection(strConnString);
+           con.Open();
+           SqlCommand cmd = new SqlCommand("StoreModify", con);
+           cmd.Parameters.AddWithValue("@Sno", Sno);
+           cmd.Parameters.AddWithValue("@Mrno",Mrno);
+           cmd.Parameters.AddWithValue("@GEno", Request.Form[TextBox1.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Invoiceno", Request.Form[TextBox2.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Vendorid", Request.Form[DropDownList1.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Itemid", Request.Form[DropDownList4.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@QReceived", Request.Form[TextBox6.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Description", Request.Form[TextBox3.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@ItemTotalCost", Request.Form[TextBox7.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@MOP", Request.Form[TextBox8.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Date", Request.Form[TextBox9.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Discount", Request.Form[EC0.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Vat", Request.Form[EC1.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Tax", Request.Form[EC2.UniqueID].Trim());
+           cmd.Parameters.AddWithValue("@Misc", Request.Form[EC3.UniqueID].Trim());
+           cmd.CommandType = CommandType.StoredProcedure;
+           cmd.ExecuteNonQuery();
+           con.Close();
+           con.Open();
+           Session["Modified"]="yes";
+           Response.Redirect("ProductEntryModify.aspx");
+       }
+        Response.Write(Sno+","+Mrno);
+    }
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+        Session.Clear();
+        Response.Redirect("ProductEntryModify.aspx");
+    }
+    protected void DropDownList4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        String index = DropDownList4.SelectedValue;
+        if (!index.Equals("0"))
+        {
+            BindBalance(index);
+            BindUnit(index);
+        }
+        else
+        {
+            Label2.Text = "";
+            DropDownList3.Items.Clear();
+        }
+    }
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        String index = DropDownList1.SelectedValue;
+        if (!index.Equals("0"))
+        {
+            BindAddress(index);
+        }
+        else
+        {
+            TextBox4.Text = "";
+        }
+    }
+    protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        String index = DropDownList2.SelectedValue;
+        Label2.Text = "";
+        if (!index.Equals("0"))
+        {
+            BindItem(index);
+            DropDownList4.BackColor = System.Drawing.Color.White;
+        }
+        else
+        {
+            DropDownList4.Enabled = false;
+            DropDownList4.BackColor = System.Drawing.Color.Silver;
+        }
+    }
+}
